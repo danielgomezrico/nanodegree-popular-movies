@@ -10,15 +10,19 @@ import butterknife.ButterKnife;
 import com.makingiants.api.repositories.Movie;
 import com.makingiants.popularmovies.R;
 import com.squareup.picasso.Picasso;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
+public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>
+    implements View.OnClickListener {
 
   private List<Movie> mItems;
+  private WeakReference<MovieItemListener> mWeakListener;
 
-  public MoviesAdapter() {
+  public MoviesAdapter(MovieItemListener listener) {
     mItems = new ArrayList<>();
+    mWeakListener = new WeakReference<>(listener);
   }
 
   @Override
@@ -31,6 +35,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
   @Override
   public void onBindViewHolder(MovieViewHolder holder, int position) {
     Movie movie = mItems.get(position);
+
+    holder.itemView.setTag(position);
+    holder.itemView.setOnClickListener(this);
 
     Picasso.with(holder.thumbImageView.getContext())
         .load(movie.getPosterImageUrl("w780"))
@@ -47,6 +54,16 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     notifyDataSetChanged();
   }
 
+  @Override
+  public void onClick(View view) {
+    MovieItemListener listener = mWeakListener.get();
+    if (listener != null) {
+      Integer index = (Integer) view.getTag();
+      Movie movie = mItems.get(index);
+      listener.onMovieItemClick(movie);
+    }
+  }
+
   class MovieViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.thumb_image_view) ImageView thumbImageView;
 
@@ -54,5 +71,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
       super(itemView);
       ButterKnife.bind(this, itemView);
     }
+  }
+
+  public interface MovieItemListener {
+    void onMovieItemClick(Movie movie);
   }
 }

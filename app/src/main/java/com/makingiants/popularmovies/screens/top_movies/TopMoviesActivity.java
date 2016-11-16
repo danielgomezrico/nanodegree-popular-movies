@@ -13,7 +13,8 @@ import com.makingiants.popularmovies.BuildConfig;
 import com.makingiants.popularmovies.R;
 import java.util.List;
 
-public class TopMoviesActivity extends AppCompatActivity implements TopMoviesView {
+public class TopMoviesActivity extends AppCompatActivity implements TopMoviesView,
+    MoviesAdapter.MovieItemListener {
 
   @BindView(R.id.movies_recycler_view) RecyclerView mMoviesRecyclerView;
 
@@ -28,7 +29,7 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesVie
 
     mPresenter = new TopMoviesPresenter();
 
-    mAdapter = new MoviesAdapter();
+    mAdapter = new MoviesAdapter(this);
     mMoviesRecyclerView.setAdapter(mAdapter);
     mMoviesRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
   }
@@ -36,7 +37,10 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesVie
   @Override
   protected void onResume() {
     super.onResume();
-    mPresenter.onAttach(this, new MovieRepository(BuildConfig.POPULAR_THE_MOVIE_API_KEY));
+
+    mPresenter.onAttach(this,
+        new MovieRepository(BuildConfig.POPULAR_THE_MOVIE_API_KEY),
+        new TopMoviesCoordinator(this));
   }
 
   @Override
@@ -48,5 +52,10 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesVie
   @Override
   public void showItems(List<Movie> items) {
     mAdapter.addItems(items);
+  }
+
+  @Override
+  public void onMovieItemClick(Movie movie) {
+    mPresenter.onItemClick(movie);
   }
 }

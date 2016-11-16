@@ -8,10 +8,13 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 class TopMoviesPresenter {
-  TopMoviesView mView;
+  private TopMoviesView mView;
+  private TopMoviesCoordinator mCoordinator;
 
-  void onAttach(TopMoviesView view, MovieRepository movieRepository) {
+  void onAttach(TopMoviesView view, MovieRepository movieRepository,
+      TopMoviesCoordinator coordinator) {
     mView = view;
+    mCoordinator = coordinator;
 
     movieRepository.getTopRated()
         .subscribeOn(Schedulers.io())
@@ -19,7 +22,7 @@ class TopMoviesPresenter {
         .subscribeWith(new DisposableObserver<PaginatedAnswer<Movie>>() {
           @Override
           public void onNext(PaginatedAnswer<Movie> paginatedAnswer) {
-              mView.showItems(paginatedAnswer.getResults());
+            mView.showItems(paginatedAnswer.getResults());
           }
 
           @Override
@@ -36,5 +39,9 @@ class TopMoviesPresenter {
 
   void deAttach() {
     mView = null;
+  }
+
+  public void onItemClick(Movie movie) {
+    mCoordinator.startMovieDetailView(movie);
   }
 }

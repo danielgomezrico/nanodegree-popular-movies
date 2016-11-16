@@ -18,6 +18,14 @@
       </intent-filter>
     </activity>
 
+    <activity
+      android:name=".screens.movie_detail.MovieDetailActivity"
+      android:parentActivityName=".screens.top_movies.TopMoviesActivity">
+      <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value=".screens.top_movies.TopMoviesActivity" />
+    </activity>
+
   </application>
 
 </manifest>
