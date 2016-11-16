@@ -1,4 +1,4 @@
-package com.makingiants.popularmovies.screens;
+package com.makingiants.popularmovies.screens.top_movies;
 
 import com.makingiants.api.repositories.Movie;
 import java.util.List;

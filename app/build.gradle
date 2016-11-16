@@ -24,10 +24,17 @@ android {
   packagingOptions {
     exclude 'META-INF/rxjava.properties'
   }
-
 }
 
+ext.versions = [supportLibrary: "25.0.0", butterKnife: "8.4.0"]
+
 dependencies {
-  compile 'com.android.support:appcompat-v7:25.0.0'
   compile project(":api")
+  compile "com.android.support:appcompat-v7:$versions.supportLibrary"
+  compile "com.android.support:recyclerview-v7:$versions.supportLibrary"
+
+  compile "com.jakewharton:butterknife:$versions.butterKnife"
+  annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterKnife"
+
+  compile 'com.squareup.picasso:picasso:2.5.2'
 }

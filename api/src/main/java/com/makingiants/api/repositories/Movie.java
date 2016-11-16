@@ -1,5 +1,9 @@
 package com.makingiants.api.repositories;
 
 public class Movie {
-  private String originalTitle;
+  String posterPath;
+
+  public String getPosterImageUrl(String size) {
+    return String.format("http://image.tmdb.org/t/p/%s/%s", size, posterPath);
+  }
 }
