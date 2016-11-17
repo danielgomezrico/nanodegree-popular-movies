@@ -47,7 +47,9 @@ class TopMoviesPresenter {
         .subscribeWith(new DisposableObserver<PaginatedAnswer<Movie>>() {
           @Override
           public void onNext(PaginatedAnswer<Movie> paginatedAnswer) {
-            mView.showItems(paginatedAnswer.getResults());
+            if (mView != null) {
+              mView.showItems(paginatedAnswer.getResults());
+            }
           }
 
           @Override
