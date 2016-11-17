@@ -1,5 +1,6 @@
 package com.makingiants.popularmovies.screens.top_movies;
 
+import android.util.Log;
 import com.makingiants.api.PaginatedAnswer;
 import com.makingiants.api.repositories.Movie;
 import com.makingiants.api.repositories.MovieRepository;
@@ -27,7 +28,7 @@ class TopMoviesPresenter {
 
           @Override
           public void onError(Throwable e) {
-
+            Log.e("Error", "Loading movies", e);
           }
 
           @Override
