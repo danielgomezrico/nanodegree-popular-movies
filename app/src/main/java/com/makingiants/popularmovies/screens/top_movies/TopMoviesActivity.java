@@ -32,16 +32,12 @@ public class TopMoviesActivity extends AppCompatActivity implements TopMoviesVie
     mAdapter = new MoviesAdapter(this);
     mMoviesRecyclerView.setAdapter(mAdapter);
     mMoviesRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
 
     mPresenter.onAttach(this,
         new MovieRepository(BuildConfig.POPULAR_THE_MOVIE_API_KEY),
         new TopMoviesCoordinator(this));
   }
+
 
   @Override
   protected void onDestroy() {
