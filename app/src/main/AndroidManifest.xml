@@ -28,7 +28,8 @@
 
     <activity
       android:name=".screens.SettingsActivity"
-      android:parentActivityName=".screens.top_movies.TopMoviesActivity">
+      android:parentActivityName=".screens.top_movies.TopMoviesActivity"
+      android:theme="@style/SettingsTheme">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
         android:value=".screens.top_movies.TopMoviesActivity" />
