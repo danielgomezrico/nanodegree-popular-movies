@@ -6,4 +6,5 @@
     <string name="pref_movie_order_key" translatable="false">movie_order</string>
     <string name="pref_movie_order_label" translatable="false">Movie Order</string>
     <string name="pref_movie_order_name">Movie order</string>
+    <string name="pref_movie_order_default">Most popular</string>
 </resources>

@@ -6,6 +6,7 @@
   <ListPreference
     android:entries="@array/prefs_movie_order_display"
     android:entryValues="@array/prefs_movie_order_values"
+    android:defaultValue="@string/pref_movie_order_default"
     android:key="@string/pref_movie_order_key"
     android:singleLine="true"
     android:title="@string/pref_movie_order_name" />
