@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <array name="prefs_movie_order_display">
+    <item>"Most popular"</item>
+    <item>"Highest rated"</item>
+  </array>
+
+  <array name="prefs_movie_order_values">
+    <item>"popular"</item>
+    <item>"rate"</item>
+  </array>
+
+</resources>

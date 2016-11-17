@@ -19,7 +19,6 @@ public class TheMovieDbApi {
   private static Retrofit retrofit;
 
   public static void init() {
-
     HttpLoggingInterceptor logger = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
       @Override
       public void log(String message) {

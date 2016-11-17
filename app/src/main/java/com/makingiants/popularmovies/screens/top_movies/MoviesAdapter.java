@@ -40,7 +40,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     holder.itemView.setOnClickListener(this);
 
     Picasso.with(holder.thumbImageView.getContext())
-        .load(movie.getPosterImageUrl("w780"))
+        .load(movie.getPosterImageUrl("w154"))
         .into(holder.thumbImageView);
   }
 

@@ -9,4 +9,9 @@ interface MovieService {
 
   @GET("movie/top_rated")
   Observable<PaginatedAnswer<Movie>> getTopRated(@Query("api_key") String apiKey);
+
+
+  @GET("movie/popular")
+  Observable<PaginatedAnswer<Movie>> getPopular(@Query("api_key") String apiKey);
+
 }

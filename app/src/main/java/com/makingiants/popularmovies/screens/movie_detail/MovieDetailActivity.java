@@ -42,6 +42,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     mVoteAverageTextView.setText(movie.getVoteAverage());
     mSynopsisTextView.setText(movie.getOverview());
 
-    Picasso.with(this).load(movie.getPosterImageUrl("w780")).into(mThumbImageView);
+    Picasso.with(this).load(movie.getPosterImageUrl("w154sour"
+        + "")).into(mThumbImageView);
   }
 }
